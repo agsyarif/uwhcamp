@@ -1,46 +1,57 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html x-data="data()" lang="en">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    @include('includes.dashboard.meta')
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <title>@yield('title') | UWHcamp</title>
 
-        @livewireStyles
+    @stack('before-style')
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
+    @include('includes.dashboard.style')
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+    @stack('after-style')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    @livewireStyles
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+</head>
+
+<body class="antialiased">
+    <div class="flex h-screen bg-serv-services-bg" :class="{ 'overflow-hidden': isSideMenuOpen }">
+
+        @include('components.dashboard.dekstop')
+
+        <div x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 flex items-end bg-black bg-opacity-50 z-1 sm:items-center sm:justify-center"></div>
+
+
+
+        @include('components.dashboard.mobile')
+
+        <div class="relative flex flex-col flex-1 w-full">
+
+            @include('components.dashboard.header')
+
+            @include('sweetalert::alert')
+
+            @yield('content')
+
         </div>
 
-        @stack('modals')
+    </div>
 
-        @livewireScripts
-    </body>
+    @stack('before-script')
+
+    @include('includes.dashboard.script')
+
+    @stack('after-script')
+
+    @livewireScripts
+
+</body>
+
 </html>

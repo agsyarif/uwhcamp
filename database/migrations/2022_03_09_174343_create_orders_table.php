@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('member_id')->nullable()->index('fk_order_member_to_users');
             $table->foreignId('mentor_id')->nullable()->index('fk_order_mentor_to_users');
             // $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->integer('price');
             $table->boolean('is_paid')->default(false);
             $table->string('midtrans_url')->nullable();
             $table->string('midtrans_token')->nullable();

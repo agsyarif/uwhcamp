@@ -18,7 +18,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    protected static $recordEvents = [ 'updated', 'deleted'];
+    protected static $recordEvents = ['updated', 'deleted'];
 
     /**
      * The attributes that are mass assignable.
@@ -62,4 +62,19 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function user_roles()
+    {
+        return $this->belongsTo(UserRole::class, 'user_role_id');
+    }
+
+    public function details()
+    {
+        return $this->hasOne(DetailUser::class);
+    }
+
+    public function checkout()
+    {
+        return $this->hasMany(checkout_course::class);
+    }
 }

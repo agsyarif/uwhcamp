@@ -10,45 +10,6 @@ class course extends Model
 {
     use HasFactory, SoftDeletes;
 
-    // protected $fillable = [
-    //     'name',
-    //     'slug',
-    //     'description',
-    //     'level_id',
-    //     'course_category_id',
-    //     'image',
-    //     'price',
-    //     'discount',
-    //     'discount_type',
-    //     'discount_start',
-    //     'discount_end',
-    //     'status',
-    //     'is_featured',
-    //     'is_free',
-    //     'is_popular',
-    //     'is_trending',
-    //     'is_new',
-    //     'is_recommended',
-    //     'is_live',
-    //     'is_free_preview',
-    //     'is_free_preview_available',
-    //     'is_free_preview_available_from',
-    //     'is_free_preview_available_to',
-    //     'is_free_preview_available_for',
-    //     'is_free_preview_available_for_all_users',
-    //     'is_free_preview_available_for_all_users_from',
-    //     'is_free_preview_available_for_all_users_to',
-    //     'is_free_preview_available_for_all_users_for',
-    //     'is_free_preview_available_for_all_users_for_all_users',
-    //     'is_free_preview_available_for_all_users_for_all_users_from',
-    //     'is_free_preview_available_for_all_users_for_all_users_to',
-    //     'is_free_preview_available_for_all_users_for_all_users_for',
-    //     'is_free_preview_available_for_all_users_for_all_users_for_all_users',
-    //     'is_free_preview_available_for_all_users_for_all_users_for_all_users_from',
-    //     'is_free_preview_available_for_all_users_for_all_users_for_all_users_to',
-    //     'is_free_preview_available_for_all_users_for_all_users_for',
-    // ];
-
     protected $fillable = [
         'user_id',
         'name',
@@ -82,4 +43,13 @@ class course extends Model
         return $this->hasMany(CourseLesson::class);
     }
 
+    public function checkout_course()
+    {
+        return $this->hasMany(checkout_course::class);
+    }
+
+    public function exams()
+    {
+        return $this->hasMany(exam::class);
+    }
 }

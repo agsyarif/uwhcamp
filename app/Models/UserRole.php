@@ -9,7 +9,21 @@ class UserRole extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
+    protected $dates = [
+        'created_at',
+        'updated_at',
     ];
+
+
+    protected $guarded = ['id'];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(DetailUser::class);
+    }
 }

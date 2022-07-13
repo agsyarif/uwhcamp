@@ -10,8 +10,12 @@
         "laravel/framework": "^9.2",
         "laravel/jetstream": "^2.6",
         "laravel/sanctum": "^2.14.1",
+        "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.5"
+        "livewire/livewire": "^2.5",
+        "midtrans/midtrans-php": "^2.5",
+        "realrashid/sweet-alert": "^5.0",
+        "wireui/wireui": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

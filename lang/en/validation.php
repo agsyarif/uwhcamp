@@ -144,6 +144,7 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+            'without_spaces' => 'The :attribute field must not contain spaces.',
         ],
     ],
 
